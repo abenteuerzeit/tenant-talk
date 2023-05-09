@@ -50,14 +50,14 @@ git push origin your_feature_branch
 
 ## Reporting Issues
 
-If you encounter any issues or bugs while using TenantTalk, please open a new issue in the [issue tracker](https://github.com/abenteuerzeit/TenantTalk/issues). Provide a clear description of the issue and include any relevant information, such as error messages, steps to reproduce the issue, or screenshots.
+If you encounter any issues or bugs while using TenantTalk, please open a new issue in the [issue tracker](https://github.com/abenteuerzeit/tenant-talk/issues). Provide a clear description of the issue and include any relevant information, such as error messages, steps to reproduce the issue, or screenshots.
 
 ## Feature Requests
 
-If you have a feature request or an idea for improving TenantTalk, feel free to open a new issue in the [issue tracker](https://github.com/abenteuerzeit/TenantTalk/issues). Describe the feature or improvement you'd like to see and explain how it would benefit the project.
+If you have a feature request or an idea for improving TenantTalk, feel free to open a new issue in the [issue tracker](https://github.com/abenteuerzeit/tenant-talk/issues). Describe the feature or improvement you'd like to see and explain how it would benefit the project.
 
 ## Questions and Support
 
-For general questions, support, or discussion, please use the project's [Discussions](https://github.com/abenteuerzeit/TenantTalk/discussions) section.
+For general questions, support, or discussion, please use the project's [Discussions]([https://github.com/abenteuerzeit/TenantTalk/discussions](https://github.com/abenteuerzeit/tenant-talk/issues)) section.
 
 Thank you for contributing to TenantTalk! Your efforts will help make the platform better for everyone.
