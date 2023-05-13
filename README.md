@@ -3,6 +3,7 @@
 TenantTalk is a community-driven platform for tenants to rate, review, and share their experiences with landlords and rental properties. Our mission is to empower renters by promoting transparency, accountability, and informed decision-making in the housing market.
 
 ## Table of Contents
+
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -58,11 +59,12 @@ We welcome contributions from the community! Please read our [CONTRIBUTING.md](C
 
 ## License
 
-This project is not yet licensed. 
+This project is not yet licensed.
 
 ## Contact
 
-If you have any questions, issues, or suggestions, please feel free to open an issue or reach out to me. 
+If you have any questions, issues, or suggestions, please feel free to open an issue or reach out to me.
+
 ```
 
 This README.md file provides a brief introduction to the TenantTalk project, instructions for getting started, and information about contributing. You can customize it further to include additional details specific to your project, such as technology stack, features, or application architecture.
