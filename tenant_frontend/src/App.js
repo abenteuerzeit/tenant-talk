@@ -1,6 +1,7 @@
 import './App.css';
 import {Route, Routes} from "react-router-dom";
 import {Footer, Home, ErrorPage, Header} from "./components";
+import {AllRoutes} from "./routes/AllRoutes";
 
 
 
@@ -8,10 +9,7 @@ function App() {
   return (
       <>
           <Header />
-             <Routes>
-                 <Route path="/index" element={<Home />}></Route>
-                 <Route path="*"   element={<ErrorPage />}></Route>
-             </Routes>
+            <AllRoutes />
           <Footer />
       </>
   );
