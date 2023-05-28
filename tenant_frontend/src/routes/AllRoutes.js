@@ -1,6 +1,7 @@
 import {Routes, Route } from "react-router-dom";
-import {Home} from "../pages/Home";
-import {ErrorPage} from "../pages/ErrorPage";
+import { Cities, Discussions, ErrorPage, Home, ContactUs} from "../pages";
+
+
 
 
 export const AllRoutes = () => {
@@ -9,6 +10,9 @@ export const AllRoutes = () => {
            <Routes>
                <Route path="/" element={<Home />}></Route>
                <Route path="*"   element={<ErrorPage />}></Route>
+               <Route path="/cities" element={ <Cities />}></Route>
+               <Route path="/discussions" element={<Discussions />}></Route>
+               <Route path="/contactus"  element={<ContactUs />}></Route>
            </Routes>
            
        </main>
