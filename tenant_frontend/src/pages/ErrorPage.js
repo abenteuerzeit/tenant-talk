@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
+
 export const ErrorPage = () => {
+    const { t } = useTranslation();
     return (
         <>
-        <h1> Wrong URL !!!</h1>
-            <p> Opps! </p>
-        
+            <h1> {t("Wrong URL !!!")}</h1>
+            <p>{t("Opps!")}</p>
         </>
-    )
-}
+    );
+};

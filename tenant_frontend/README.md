@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### i18n
+
+i18n was made using `react-i18next` - a powerful internationalization framework for React/React Native which is based on i18next.
+You can read more here: [https://react.i18next.com/](https://react.i18next.com/)
+
+Locale files were created using `i18next/i18next-scanner`, you can read more here: [https://github.com/i18next/i18next-scanner](https://github.com/i18next/i18next-scanner)
+
+To run scanner, use following command from your home directory: `npx i18next-scanner --config src/i18next-scanner.config.js 'src/**/*.{js,jsx}'`
+Example of scanner config file is located here: `https://github.com/i18next/i18next-scanner/blob/master/examples/i18next-scanner.config.js`  
