@@ -2,11 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-
+:root {
+    --color-background: #000119;
+    --stroke-width: calc(1em / 8);
+    --font-size: 30vmin;
+    --font-weight: 700;
+    --letter-spacing: calc(1em / 8);
+  }
 
 main{
-    max-width: 1280px;
+    max-width: 1920px;
     min-height: 90vh;
     margin: auto;
     
+}
+
+/* .hero-content {
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 0, 0)),url('../src/assests/images/hero-content-bground.jpg');
+    max-width: 100%;
+    height: 75vh;
+    
+    background-position: 0% 25%;
+    align-self: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+    
+} */
+
+/* .text-hero-content {
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+} */
+
+.text-shadow-hero-content {
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Work Sans', sans-serif; */
+    background-clip: text;
+    background-image: linear-gradient(to right, #000000, #222222, #000000, #000000);
+    padding: calc(var(--stroke-width));
+    -webkit-text-stroke-color: transparent;
+    -webkit-text-stroke-width: var(--stroke-width);
 }
