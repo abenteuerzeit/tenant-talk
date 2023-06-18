@@ -1,5 +1,5 @@
 import {Routes, Route } from "react-router-dom";
-import { Cities, Discussions, ErrorPage, Home, ContactUs} from "../pages";
+import { Cities, Discussions, ErrorPage, Home, ContactUs, LogInCard} from "../pages";
 
 
 
@@ -13,6 +13,7 @@ export const AllRoutes = () => {
                <Route path="/cities" element={ <Cities />}></Route>
                <Route path="/discussions" element={<Discussions />}></Route>
                <Route path="/contactus"  element={<ContactUs />}></Route>
+               <Route path="/login" element={ <LogInCard />}></Route>
            </Routes>
            
        </main>

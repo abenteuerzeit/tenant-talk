@@ -11,7 +11,7 @@ i18n
     backend: {
       loadPath: "./locales/{{lng}}/{{ns}}.json",
     },
-    lng: "en",
+    lng: "uk",
     resources: {
       pl: {
         translation: require("./locales/pl/trans.json"),
