@@ -17,11 +17,11 @@ import { SearchBar } from "./SearchBar";
 
 
 export const DesktopNav = () => {
+    const { NAV_ITEMS } = useTranslatedItems();
     const { t } = useTranslation();
     const color = useColorModeValue("gray.600", "gray.200");
     const hoverColor = useColorModeValue("gray.800", "white");
     const popoverContentColor = useColorModeValue("white", "gray.800");
-    const { NAV_ITEMS } = useTranslatedItems();
   
 
     return (

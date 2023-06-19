@@ -54,7 +54,7 @@ export const ChakraFooter = () => {
     const date =  new Date();
     const year = date.getFullYear().toFixed()
 
-    const { SOCIAL_BUTTONS, SUPPORT_LINKS, COMPANY_LINKS } = useTranslatedItems;
+    const { SOCIAL_BUTTONS, SUPPORT_LINKS, COMPANY_LINKS } = useTranslatedItems();
 
     return (
         <Box

@@ -18,7 +18,7 @@ import { useTranslatedItems } from "./MenuTexts";
 
 export const UserNav = () => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const { MENU_ITEMS } = useTranslatedItems;
+    const { MENU_ITEMS } = useTranslatedItems();
 
 
     return (
