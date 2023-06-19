@@ -12,9 +12,10 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 import { useTranslation, Trans } from "react-i18next";
+import { useTranslatedItems } from "./header_components/MenuTexts";
 import { BiMailSend } from "react-icons/bi";
 import { Logo } from "../assests/images/Logo";
-import { SOCIAL_BUTTONS, COMPANY_LINKS, SUPPORT_LINKS } from "./header_components/MenuTexts";
+
 
 const SocialButton = ({ children, label, href }) => {
     return (
@@ -53,6 +54,8 @@ export const ChakraFooter = () => {
     const date =  new Date();
     const year = date.getFullYear().toFixed()
 
+    const { SOCIAL_BUTTONS, SUPPORT_LINKS, COMPANY_LINKS } = useTranslatedItems;
+
     return (
         <Box
             bg={useColorModeValue("gray.50", "gray.900")}
@@ -72,9 +75,9 @@ export const ChakraFooter = () => {
                         <Text fontSize={"sm"}>© {year} {t("TenantTalk. All rights reserved")}
                         </Text>
                         <Stack direction={"row"} spacing={6}>
-                            {SOCIAL_BUTTONS.map((button) => (
+                            {SOCIAL_BUTTONS && SOCIAL_BUTTONS.map((button) => (
                                 <SocialButton
-                                    label={t(button.i18nKey)}
+                                    label={button.i18nKey}
                                     href={button.href}
                                     key={button.i18nKey}
                                 >
@@ -88,9 +91,9 @@ export const ChakraFooter = () => {
                         <ListHeader>
                             <Trans>{t("Company")}</Trans>
                         </ListHeader>
-                        {COMPANY_LINKS.map((link) => (
+                        {COMPANY_LINKS && COMPANY_LINKS.map((link) => (
                             <Link href={link.href} key={link.i18nKey}>
-                                <Trans>{t(link.i18nKey)}</Trans>
+                                {link.i18nKey}
                             </Link>
                         ))}
                     </Stack>
@@ -99,9 +102,9 @@ export const ChakraFooter = () => {
                         <ListHeader>
                             <Trans>{t("Support")}</Trans>
                         </ListHeader>
-                        {SUPPORT_LINKS.map((link) => (
+                        {SUPPORT_LINKS && SUPPORT_LINKS.map((link) => (
                             <Link href={link.href} key={link.i18nKey}>
-                                <Trans>{t(link.i18nKey)}</Trans>
+                                {link.i18nKey}
                             </Link>
                         ))}
                     </Stack>
@@ -138,3 +141,4 @@ export const ChakraFooter = () => {
         </Box>
     );
 };
+

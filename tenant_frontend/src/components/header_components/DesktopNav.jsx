@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import {ChevronRightIcon} from "@chakra-ui/icons";
 import { useTranslation, Trans } from "react-i18next";
-import { NAV_ITEMS } from "./MenuTexts";
+import { useTranslatedItems } from "./MenuTexts";
 import { SearchBar } from "./SearchBar";
 
 
@@ -21,6 +21,8 @@ export const DesktopNav = () => {
     const color = useColorModeValue("gray.600", "gray.200");
     const hoverColor = useColorModeValue("gray.800", "white");
     const popoverContentColor = useColorModeValue("white", "gray.800");
+    const { NAV_ITEMS } = useTranslatedItems();
+  
 
     return (
         <Stack direction={"row"} spacing={4}>

@@ -11,13 +11,15 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { useTranslation, Trans } from "react-i18next";
-import { MENU_ITEMS } from "./MenuTexts";
+import {  Trans } from "react-i18next";
+import { useTranslatedItems } from "./MenuTexts";
 
 // User menu and color theme switcher
+
 export const UserNav = () => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const { t } = useTranslation();
+    const { MENU_ITEMS } = useTranslatedItems;
+
 
     return (
         <Stack
@@ -64,7 +66,7 @@ export const UserNav = () => {
                     </Center>
                     <br />
                     <MenuDivider />
-                    {MENU_ITEMS.map((menuItem) => (
+                    {MENU_ITEMS && MENU_ITEMS.map((menuItem) => (
                         <MenuItem key={menuItem.name}>
                             {!menuItem.special ? (
                                 <Button
@@ -74,9 +76,7 @@ export const UserNav = () => {
                                     variant={"link"}
                                     href={menuItem.link}
                                 >
-                                    <Trans i18nKey={menuItem.name}>
-                                        {t(menuItem.name)}
-                                    </Trans>
+                                    {menuItem.name}
                                 </Button>
                             ) : (
                                 <Button
@@ -94,9 +94,7 @@ export const UserNav = () => {
                                         bg: "pink.300",
                                     }}
                                 >
-                                    <Trans i18nKey={menuItem.name}>
-                                        {t(menuItem.name)}
-                                    </Trans>
+                                    {menuItem.name}
                                 </Button>
                             )}
                         </MenuItem>

@@ -9,18 +9,20 @@ import {
     useColorModeValue,
     useDisclosure,
 } from "@chakra-ui/react";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { NAV_ITEMS } from "./MenuTexts";
+import { useTranslatedItems } from "./MenuTexts";
 
 export const MobileNav = () => {
+    const { NAV_ITEMS } = useTranslatedItems();
+
     return (
         <Stack
             bg={useColorModeValue("white", "gray.800")}
             p={4}
             display={{ md: "none" }}
         >
-            {NAV_ITEMS.map((navItem) => (
+            {NAV_ITEMS && NAV_ITEMS.map((navItem) => ( 
                 <MobileNavItem key={navItem.label} {...navItem} />
             ))}
         </Stack>
@@ -28,9 +30,9 @@ export const MobileNav = () => {
 };
 
 /// The individual navigation items for the mobile version of the navigation
-export const MobileNavItem = ({ label, children, href, languageCode }) => {
+const MobileNavItem = ({ label, children, href }) => {
     const { isOpen, onToggle } = useDisclosure();
-    const { i18n, t } = useTranslation();
+    const { i18n } = useTranslation();
 
     const changeLanguage = (language) => {
         if (language) {
@@ -56,7 +58,7 @@ export const MobileNavItem = ({ label, children, href, languageCode }) => {
                     fontWeight={600}
                     color={useColorModeValue("gray.600", "gray.200")}
                 >
-                    <Trans i18nKey={label}>{t(label)}</Trans>
+                    {label}
                 </Text>
                 {children && (
                     <Icon
@@ -93,9 +95,7 @@ export const MobileNavItem = ({ label, children, href, languageCode }) => {
                                     onToggle(); // Add this to close the menu after clicking
                                 }}
                             >
-                                <Trans i18nKey={child.label}>
-                                    {t(child.label)}
-                                </Trans>
+                                {child.label}
                             </Link>
                         ))}
                 </Stack>

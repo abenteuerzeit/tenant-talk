@@ -1,29 +1,32 @@
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
+export const useTranslatedItems = () => {
+    const { t } = useTranslation();
 
 const MENU_ITEMS = [
     {
-        name: "Your services",
+        name: t("Your services"),
         link: "/",
         special: false,
     },
     {
-        name: "Account Settings",
+        name: t("Account Settings"),
         link: "/",
         special: false,
     },
     {
-        name: "Logout",
+        name: t("Logout"),
         link: "/",
         special: false,
     },
     {
-        name: "Sign In",
+        name: t("Sign In"),
         link: "/login",
         special: false,
     },
     {
-        name: "Sign Up",
+        name: t("Sign Up"),
         link: "/",
         special: true,
     },
@@ -31,56 +34,56 @@ const MENU_ITEMS = [
 
 const NAV_ITEMS = [
     {
-        label: "Home",
+        label: t("Home"),
         children: [
             {
-                label: "This is our homepage!",
-                subLabel: "We are happy to see You here",
+                label: t("This is our homepage!"),
+                subLabel: t("We are happy to see You here"),
                 href: "/home",
             },
             {
-                label: "New cities",
-                subLabel: "At Your service",
+                label: t("New cities"),
+                subLabel: t("At Your service"),
                 href: "/cities",
             },
         ],
     },
     {
-        label: "Cities",
+        label: t("Cities"),
         children: [
             {
-                label: "Cities are discussed here",
-                subLabel: "Find your dream accomodation",
+                label: t("Cities are discussed here"),
+                subLabel: t("Find your dream accomodation"),
                 href: "/discussions",
             },
             {
-                label: "Other Projects",
-                subLabel: "An exclusive list of progects",
+                label: t("Other Projects"),
+                subLabel: t("An exclusive list of projects"),
                 href: "/contactus",
             },
         ],
     },
     {
-        label: "Contact Us",
+        label: t("Contact Us"),
         href: "/contactus",
     },
     {
-        label: "Talk about Your landlord",
+        label: t("Talk about Your landlord"),
         href: "/discussions",
     },
     {
-        label: "Language",
+        label: t("Language"),
         children: [
             {
-                label: "English",
+                label: t("English"),
                 languageCode: "en",
             },
             {
-                label: "Ukrainian",
+                label: t("Ukrainian"),
                 languageCode: "uk",
             },
             {
-                label: "Polish",
+                label: t("Polish"),
                 languageCode: "pl",
             },
         ],
@@ -88,25 +91,27 @@ const NAV_ITEMS = [
 ];
 
 const SOCIAL_BUTTONS = [
-    { i18nKey: "Twitter", href: "#", icon: FaTwitter },
-    { i18nKey: "YouTube", href: "#", icon: FaYoutube },
-    { i18nKey: "Instagram", href: "#", icon: FaInstagram },
+    { i18nKey: t("Twitter"), href: "#", icon: FaTwitter },
+    { i18nKey: t("YouTube"), href: "#", icon: FaYoutube },
+    { i18nKey: t("Instagram"), href: "#", icon: FaInstagram },
 ];
 
 const COMPANY_LINKS = [
-    { i18nKey: "AboutUs", href: "#" },
-    { i18nKey: "Blog", href: "#" },
-    { i18nKey: "ContactUs", href: "/contactus" },
-    { i18nKey: "Pricing", href: "#" },
-    { i18nKey: "Testimonials", href: "#" },
+    { i18nKey: t("AboutUs"), href: "#" },
+    { i18nKey: t("Blog"), href: "#" },
+    { i18nKey: t("ContactUs"), href: "/contactus" },
+    { i18nKey: t("Pricing"), href: "#" },
+    { i18nKey: t("Testimonials"), href: "#" },
 ];
 
 const SUPPORT_LINKS = [
-    { i18nKey: "HelpCenter", href: "#" },
-    { i18nKey: "TermsOfService", href: "#" },
-    { i18nKey: "Legal", href: "#" },
-    { i18nKey: "PrivacyPolicy", href: "#" },
-    { i18nKey: "Status", href: "#" },
+    { i18nKey: t("HelpCenter"), href: "#" },
+    { i18nKey: t("TermsOfService"), href: "#" },
+    { i18nKey: t("Legal"), href: "#" },
+    { i18nKey: t("PrivacyPolicy"), href: "#" },
+    { i18nKey: t("Status"), href: "#" },
 ];
 
-export { MENU_ITEMS, NAV_ITEMS, SOCIAL_BUTTONS, SUPPORT_LINKS, COMPANY_LINKS };
+
+return { MENU_ITEMS, NAV_ITEMS, SOCIAL_BUTTONS, SUPPORT_LINKS, COMPANY_LINKS }
+};
