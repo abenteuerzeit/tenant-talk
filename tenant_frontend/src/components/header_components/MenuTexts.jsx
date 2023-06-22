@@ -1,36 +1,42 @@
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-export const useTranslatedItems = () => {
+export const useTranslatedItems = (isLoggedIn, logout) => {
     const { t } = useTranslation();
-
-const MENU_ITEMS = [
-    {
-        name: t("Your services"),
-        link: "/",
-        special: false,
-    },
-    {
-        name: t("Account Settings"),
-        link: "/",
-        special: false,
-    },
-    {
-        name: t("Logout"),
-        link: "/",
-        special: false,
-    },
-    {
-        name: t("Sign In"),
-        link: "/login",
-        special: false,
-    },
-    {
-        name: t("Sign Up"),
-        link: "/",
-        special: true,
-    },
-];
+  
+    const MENU_ITEMS = isLoggedIn
+      ? [
+          {
+            name: t("Your services"),
+            link: "/",
+            special: false,
+          },
+          {
+            name: t("Account Settings"),
+            link: "/",
+            special: false,
+          },
+          {
+            name: t("Logout"),
+            link: "/",
+            onClick: logout,
+            special: false,
+          },
+        ]
+      : [
+          {
+            name: t("Sign In"),
+            link: "/login",
+            special: false,
+          },
+          {
+            name: t("Sign Up"),
+            link: "/auth",
+            special: true,
+          },
+        ];
+  
+   
 
 const NAV_ITEMS = [
     {
@@ -39,7 +45,7 @@ const NAV_ITEMS = [
             {
                 label: t("This is our homepage!"),
                 subLabel: t("We are happy to see You here"),
-                href: "/home",
+                href: "/",
             },
             {
                 label: t("New cities"),
@@ -59,7 +65,7 @@ const NAV_ITEMS = [
             {
                 label: t("Other Projects"),
                 subLabel: t("An exclusive list of projects"),
-                href: "/contactus",
+                href: "#",
             },
         ],
     },

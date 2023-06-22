@@ -9,6 +9,8 @@ import {
     Input,
     InputGroup,
     InputLeftElement,
+    FormErrorMessage,
+    FormHelperText,
     Link,
     Stack,
     Textarea,
@@ -21,9 +23,37 @@ import React from "react";
 import { BsGithub, BsLinkedin, BsPerson, BsTwitter } from "react-icons/bs";
 import { MdEmail, MdOutlineEmail } from "react-icons/md";
 import { CONFETTI_DARK, CONFETTI_LIGHT } from "../assests/images/Confetti";
+import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 
 export const ContactUs = () => {
     const { hasCopied, onCopy } = useClipboard("example@example.com");
+    const { t } = useTranslation();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [isNameFocused, setNameFocused] = useState(false);
+    const [isEmailFocused, setEmailFocused] = useState(false);
+    const [isMessageFocused, setMessageFocused] = useState(false);
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    const handleNameChange = (e) => setName(e.target.value);
+    const handleMailChange = (e) => setEmail(e.target.value);
+    const handleMessageChange = (e) => setMessage(e.target.value);
+
+    const isNameError = name === "";
+    const isEmailError =
+        email === "" ||
+        !email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/);
+    const isMessageError = message === "" || message.length <= 5;
+
+    useEffect(() => {
+        if (!isNameError && !isEmailError && !isMessageError) {
+            setIsFormValid(true);
+        } else {
+            setIsFormValid(false);
+        }
+    }, [isNameError, isEmailError, isMessageError]);
 
     return (
         <Flex
@@ -51,8 +81,15 @@ export const ContactUs = () => {
                                 base: "4xl",
                                 md: "5xl",
                             }}
+                            color="green.500"
+                            _hover={{bg: "blue.500",
+                            color: useColorModeValue(
+                                "white",
+                                "gray.700"
+                            )
+                         }}
                         >
-                            Get in Touch
+                            {t("Get in Touch!")}
                         </Heading>
 
                         <Stack
@@ -67,8 +104,8 @@ export const ContactUs = () => {
                                 <Tooltip
                                     label={
                                         hasCopied
-                                            ? "Email Copied!"
-                                            : "Copy Email"
+                                            ? t("Email Copied!")
+                                            : t("Copy Email")
                                     }
                                     closeOnClick={false}
                                     hasArrow
@@ -155,57 +192,117 @@ export const ContactUs = () => {
                                 shadow="base"
                             >
                                 <VStack spacing={5}>
-                                    <FormControl isRequired>
-                                        <FormLabel>Name</FormLabel>
-
+                                    <FormControl
+                                        isRequired
+                                        isInvalid={isNameError && isNameFocused}
+                                    >
+                                        <FormLabel>{t("Name")}</FormLabel>
                                         <InputGroup>
                                             <InputLeftElement
                                                 children={<BsPerson />}
+                                                _hover={{ color: "green.500" }}
                                             />
                                             <Input
                                                 type="text"
                                                 name="name"
-                                                placeholder="Your Name"
+                                                placeholder={t("Your Name")}
+                                                value={name}
+                                                onChange={handleNameChange}
+                                                onFocus={() =>
+                                                    setNameFocused(true)
+                                                }
                                             />
                                         </InputGroup>
+                                        <FormHelperText>
+                                            {t("Enter your name.")}
+                                        </FormHelperText>
+                                        {isNameError && isNameFocused && (
+                                            <FormErrorMessage>
+                                                {t("Name is required.")}
+                                            </FormErrorMessage>
+                                        )}
                                     </FormControl>
 
-                                    <FormControl isRequired>
-                                        <FormLabel>Email</FormLabel>
-
+                                    <FormControl
+                                        isRequired
+                                        isInvalid={
+                                            isEmailError && isEmailFocused
+                                        }
+                                    >
+                                        <FormLabel>{t("Email")}</FormLabel>
                                         <InputGroup>
                                             <InputLeftElement
                                                 children={<MdOutlineEmail />}
+                                                _hover={{ color: "green.500" }}
                                             />
                                             <Input
                                                 type="email"
                                                 name="email"
-                                                placeholder="Your Email"
+                                                placeholder={t("Your Email")}
+                                                value={email}
+                                                onChange={handleMailChange}
+                                                onFocus={() =>
+                                                    setEmailFocused(true)
+                                                }
                                             />
                                         </InputGroup>
+                                        <FormHelperText>
+                                            {t("Enter your email.")}
+                                        </FormHelperText>
+                                        {isEmailError && isEmailFocused && (
+                                            <FormErrorMessage>
+                                                {t(
+                                                    "Email is required and should be in correct format."
+                                                )}
+                                            </FormErrorMessage>
+                                        )}
                                     </FormControl>
 
-                                    <FormControl isRequired>
-                                        <FormLabel>Message</FormLabel>
-
+                                    <FormControl
+                                        isRequired
+                                        isInvalid={
+                                            isMessageError && isMessageFocused
+                                        }
+                                    >
+                                        <FormLabel>{t("Message")}</FormLabel>
                                         <Textarea
                                             name="message"
-                                            placeholder="Your Message"
+                                            placeholder={t("Your Message")}
                                             rows={6}
-                                            resize="none"
+                                            resize="vertical"
+                                            value={message}
+                                            onChange={handleMessageChange}
+                                            onFocus={() =>
+                                                setMessageFocused(true)
+                                            }
                                         />
+                                        <FormHelperText>
+                                            {t(
+                                                "Enter your message (at least 6 characters)."
+                                            )}
+                                        </FormHelperText>
+                                        {isMessageError && isMessageFocused && (
+                                            <FormErrorMessage>
+                                                {t(
+                                                    "Message is required and should be more than 5 characters."
+                                                )}
+                                            </FormErrorMessage>
+                                        )}
                                     </FormControl>
 
                                     <Button
                                         colorScheme="blue"
                                         bg="blue.400"
                                         color="white"
-                                        _hover={{
-                                            bg: "blue.500",
+                                        _hover={{ bg: "green.500" }}
+                                        _disabled={{
+                                            bg: "gray.400",
+                                            cursor: "not-allowed",
                                         }}
                                         isFullWidth
+                                        isDisabled={!isFormValid}
                                     >
-                                        Send Message
+                                        {t("Send Message")}
                                     </Button>
                                 </VStack>
                             </Box>

@@ -11,15 +11,15 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import {  Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useTranslatedItems } from "./MenuTexts";
 
 // User menu and color theme switcher
 
-export const UserNav = () => {
+export const UserNav = ({ isLoggedIn, username, logout }) => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const { MENU_ITEMS } = useTranslatedItems();
-
+    const { MENU_ITEMS } = useTranslatedItems(isLoggedIn, logout);
+    const {t} = useTranslation();
 
     return (
         <Stack
@@ -61,44 +61,48 @@ export const UserNav = () => {
                     <br />
                     <Center>
                         <p>
-                            <Trans i18nKey="Username">Username</Trans>
+                            {isLoggedIn ? (
+                                `${t("Hello")}, ${username}`
+                            ) : (
+                                <Trans i18nKey="Username">Username</Trans>
+                            )}
                         </p>
                     </Center>
                     <br />
                     <MenuDivider />
                     {MENU_ITEMS && MENU_ITEMS.map((menuItem) => (
-                        <MenuItem key={menuItem.name}>
-                            {!menuItem.special ? (
-                                <Button
-                                    as={"a"}
-                                    fontSize={"sm"}
-                                    fontWeight={400}
-                                    variant={"link"}
-                                    href={menuItem.link}
-                                >
-                                    {menuItem.name}
-                                </Button>
-                            ) : (
-                                <Button
-                                    as={"a"}
-                                    display={{
-                                        base: "none",
-                                        md: "inline-flex",
-                                    }}
-                                    fontSize={"sm"}
-                                    fontWeight={600}
-                                    color={"white"}
-                                    bg={"pink.400"}
-                                    href={menuItem.link}
-                                    _hover={{
-                                        bg: "pink.300",
-                                    }}
-                                >
-                                    {menuItem.name}
-                                </Button>
-                            )}
-                        </MenuItem>
-                    ))}
+                            <MenuItem key={menuItem.name}>
+                                {!menuItem.special ? (
+                                    <Button
+                                        as={"a"}
+                                        fontSize={"sm"}
+                                        fontWeight={400}
+                                        variant={"link"}
+                                        href={menuItem.link}
+                                    >
+                                        {menuItem.name}
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        as={"a"}
+                                        display={{
+                                            base: "none",
+                                            md: "inline-flex",
+                                        }}
+                                        fontSize={"sm"}
+                                        fontWeight={600}
+                                        color={"white"}
+                                        bg={"pink.400"}
+                                        href={menuItem.link}
+                                        _hover={{
+                                            bg: "pink.300",
+                                        }}
+                                    >
+                                        {menuItem.name}
+                                    </Button>
+                                )}
+                            </MenuItem>
+                        ))}
                 </MenuList>
             </Menu>
         </Stack>
