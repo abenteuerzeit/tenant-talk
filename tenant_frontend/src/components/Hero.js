@@ -3,7 +3,8 @@
 export const Hero = () =>  {
   return (
       <section id="hero-content" className="w-full">
-          <div className="flex flex-col w-full self-center bg-no-repeat bg-cover items-center justify-center bg-[linear-gradient(to_bottom,rgba(255,255,255,0.2),rgba(0,0,0,1)),url('../src/assests/images/hero-content-bground.jpg')] h-[45vh] sm:h-[60vh] md:h-[75vh] lg:h-[90vh]">
+          <div className="flex flex-col w-full self-center bg-no-repeat bg-cover items-center justify-center bg-[url('../src/assests/images/hero-content-bground.jpg')] h-[45vh] sm:h-[60vh] md:h-[75vh] lg:h-[90vh] relative">
+          
               <div className="text-center text-white">
                   <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-normal tracking-[-.08em] text-shadow-hero-content">
                       Let's talk about your landlord
@@ -62,13 +63,14 @@ export const Hero = () =>  {
                       <span class="sr-only">Search</span>
                   </button>
               </form>
+              <div className="w-full h-[4vh] sm:h-[6vh] md:h-[7vh] lg:h-[10vh] self-center bg-no-repeat bg-contain bg-center items-center justify-center absolute bottom-0 bg-[url('../src/assests/images/hero-content-mountains.png')] "></div>
+              
           </div>
-          <div className="w-full h-[150px] bg-no-repeat bg-cover bg-[url('../src/assests/images/hero-content-triangle-bottom.png')] ">
-
-          </div>
+          
       </section>
   );
 }
+
 
 
 
