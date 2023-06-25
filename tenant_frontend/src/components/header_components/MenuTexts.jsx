@@ -1,10 +1,12 @@
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useUser } from "../auth_components/userProvider";
 
 export const useTranslatedItems = (isLoggedIn, logout) => {
     const { t } = useTranslation();
+    const { user } = useUser();
   
-    const MENU_ITEMS = isLoggedIn
+    const MENU_ITEMS = user
       ? [
           {
             name: t("Your services"),
@@ -19,19 +21,13 @@ export const useTranslatedItems = (isLoggedIn, logout) => {
           {
             name: t("Logout"),
             link: "/",
-            onClick: logout,
-            special: false,
+            special: true,
           },
         ]
       : [
           {
             name: t("Sign In"),
             link: "/login",
-            special: false,
-          },
-          {
-            name: t("Sign Up"),
-            link: "/auth",
             special: true,
           },
         ];

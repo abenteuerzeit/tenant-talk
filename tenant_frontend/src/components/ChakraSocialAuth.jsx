@@ -1,80 +1,58 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { Box, useToast } from "@chakra-ui/react";
-import { User } from "./auth_components/User";
 import { LoginSocialGoogle } from "reactjs-social-login";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { useTranslation } from "react-i18next";
+import { useUser } from "./auth_components/userProvider";
 
-const REDIRECT_URI = window.location.href;
+const REDIRECT_URI = "http://localhost:3000/login"
 
 export const ChakraSocialAuth = ({ onLogin, onLogout }) => {
-    const [provider, setProvider] = useState("");
-    const [profile, setProfile] = useState(null);
-    const {t} = useTranslation();
-
+    const { t } = useTranslation();
+    const { setUser } = useUser(); // 'user' is also extracted here
     const toast = useToast();
 
+    // When a login response is received, update the global user state
+    // This will cause all components that use this state to re-render
+    // with the new user data
     const onResolve = useCallback(
         ({ provider, data }) => {
-          setProvider(provider);
-          setProfile(data);
-          onLogin(data.name);
+            const userData = {
+                provider,
+                profile: data,
+            };
+            setUser(userData);
+            // save user data to local storage
+            localStorage.setItem('user', JSON.stringify(userData));
         },
-        [onLogin]
-      );
-
+        [setUser]
+    );
+    
     const onLoginStart = useCallback(() => {
         toast({
-            title: "Starting Login...",
+            title: t("Starting Login..."),
             status: "info",
             duration: 3000,
             isClosable: true,
             position: "top",
         });
-    }, [toast]);
+    }, [toast,t]);
 
-    const onLogoutSuccess = useCallback(() => {
-        setProfile(null);
-        setProvider("");
-        toast({
-          title: t("Logout Successful"),
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-          position: "top",
-        });
-        onLogout();
-      }, [toast, onLogout,t]);
 
     return (
         <Box>
-            {provider && profile ? (
-                <User
-                    provider={provider}
-                    profile={profile}
-                    onLogout={onLogoutSuccess}
-                />
-            ) : (
-                <Box>
-                    <LoginSocialGoogle
-                        isOnlyGetToken
-                        client_id={
-                            process.env.REACT_APP_GG_APP_ID ||''}
-                        scope={"https://www.googleapis.com/auth/userinfo.email"}
-                        redirect_uri={REDIRECT_URI}
-                        onLoginStart={onLoginStart}
-                        onResolve={({ provider, data }) => {
-                            setProvider(provider);
-                            setProfile(data);
-                        }}
-                        onReject={(err) => {
-                            console.error(err);
-                        }}
-                    >
-                        <GoogleLoginButton />
-                    </LoginSocialGoogle>
-                </Box>
-            )}
+            <LoginSocialGoogle
+                isOnlyGetCode={true}
+                client_id={process.env.REACT_APP_GG_APP_ID || ""}
+                redirect_uri={REDIRECT_URI}
+                onLoginStart={onLoginStart}
+                onResolve={onResolve}
+                onReject={(err) => {
+                    console.error(err);
+                }}
+            >
+                <GoogleLoginButton />
+            </LoginSocialGoogle>
         </Box>
     );
 };

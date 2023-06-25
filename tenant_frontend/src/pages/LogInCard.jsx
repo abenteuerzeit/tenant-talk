@@ -50,13 +50,13 @@ import {
                 onChange={handleInputChange}/>
                 {!isError ? (
           <FormHelperText>
-            {t("Enter the email you'd like to receive the newsletter on.")}
+            {t("Enter your email.")}
           </FormHelperText>
         ) : (
           <FormErrorMessage>{t("Email is required.")}</FormErrorMessage>
         )}
               </FormControl>
-              <FormControl id="password">
+              <FormControl id="password" isRequired>
                 <FormLabel>{t("Password")}</FormLabel>
                 <Input type="password" />
               </FormControl>

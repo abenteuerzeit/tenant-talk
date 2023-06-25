@@ -3,17 +3,17 @@ import "./App.css";
 import { ChakraHeader, ChakraFooter } from "./components";
 import { AllRoutes } from "./routes/AllRoutes";
 import { ChakraProvider } from "@chakra-ui/react";
-
+import { UserProvider } from "./components/auth_components/userProvider";
 
 function App() {
     return (
-        <>
+        <UserProvider>
             <ChakraProvider>
                 <ChakraHeader />
                 <AllRoutes />
                 <ChakraFooter />
             </ChakraProvider>
-        </>
+        </UserProvider>
     );
 }
 
