@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/tenant-talk/tenant-front/static/css/main.c45427cb.css",
+    "main.js": "/tenant-talk/tenant-front/static/js/main.76a7175f.js",
+    "static/js/787.aa54c01e.chunk.js": "/tenant-talk/tenant-front/static/js/787.aa54c01e.chunk.js",
+    "static/media/logo.jpg": "/tenant-talk/tenant-front/static/media/logo.0715c5c9b865edd4609e.jpg",
+    "index.html": "/tenant-talk/tenant-front/index.html",
+    "main.c45427cb.css.map": "/tenant-talk/tenant-front/static/css/main.c45427cb.css.map",
+    "main.76a7175f.js.map": "/tenant-talk/tenant-front/static/js/main.76a7175f.js.map",
+    "787.aa54c01e.chunk.js.map": "/tenant-talk/tenant-front/static/js/787.aa54c01e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c45427cb.css",
+    "static/js/main.76a7175f.js"
+  ]
+}
