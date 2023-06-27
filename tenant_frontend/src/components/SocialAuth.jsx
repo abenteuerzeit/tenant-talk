@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import '../assests/socialAuth.css'
+import '../assets/socialAuth.css'
 import { User } from './auth_components/User' // component display user (see detail on /example directory)
 import {
 LoginSocialGoogle,

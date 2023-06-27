@@ -1,3 +1,4 @@
+// Generate the CSS svg logo
 export const Logo = (props) => {
     return (
         <svg

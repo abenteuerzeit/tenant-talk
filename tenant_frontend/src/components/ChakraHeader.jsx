@@ -8,7 +8,7 @@ import {
     useDisclosure,
 } from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { Logo } from "../assests/images/Logo";
+import { Logo } from "../assets/images/Logo";
 import { UserNav } from "./header_components/UserNav";
 import { DesktopNav } from "./header_components/DesktopNav";
 import { MobileNav } from "./header_components/MobileNav";

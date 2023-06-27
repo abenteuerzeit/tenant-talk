@@ -5,29 +5,34 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import { useTranslation } from "react-i18next";
 import { useUser } from "./auth_components/userProvider";
 
+// Redirect URL after successful login
 const REDIRECT_URI = "http://localhost:3000/login"
 
 export const ChakraSocialAuth = ({ onLogin, onLogout }) => {
     const { t } = useTranslation();
     const { setUser } = useUser(); // 'user' is also extracted here
+
+    // Chakra UI's toast for notifications
     const toast = useToast();
 
-    // When a login response is received, update the global user state
-    // This will cause all components that use this state to re-render
-    // with the new user data
+    // Callback function to handle successful login response
+    // Updates the global user state and stores user data in local storage
     const onResolve = useCallback(
         ({ provider, data }) => {
             const userData = {
                 provider,
                 profile: data,
             };
+            // Updates the global user state
             setUser(userData);
-            // save user data to local storage
+
+            // Stores user data in local storage
             localStorage.setItem('user', JSON.stringify(userData));
         },
         [setUser]
     );
     
+    // Callback function to notify the start of the login process
     const onLoginStart = useCallback(() => {
         toast({
             title: t("Starting Login..."),
@@ -40,6 +45,9 @@ export const ChakraSocialAuth = ({ onLogin, onLogout }) => {
 
 
     return (
+        // Google login button component
+        // Uses 'LoginSocialGoogle' from 'reactjs-social-login'
+        // The 'client_id' is obtained from the environment variable 'REACT_APP_GG_APP_ID'
         <Box>
             <LoginSocialGoogle
                 isOnlyGetCode={true}
@@ -47,6 +55,7 @@ export const ChakraSocialAuth = ({ onLogin, onLogout }) => {
                 redirect_uri={REDIRECT_URI}
                 onLoginStart={onLoginStart}
                 onResolve={onResolve}
+                // Log any errors to the console
                 onReject={(err) => {
                     console.error(err);
                 }}

@@ -1,3 +1,4 @@
+// Importing necessary components and libraries
 import {
     Box,
     Button,
@@ -22,31 +23,40 @@ import {
 import React from "react";
 import { BsGithub, BsLinkedin, BsPerson, BsTwitter } from "react-icons/bs";
 import { MdEmail, MdOutlineEmail } from "react-icons/md";
-import { CONFETTI_DARK, CONFETTI_LIGHT } from "../assests/images/Confetti";
+import { CONFETTI_DARK, CONFETTI_LIGHT } from "../assets/images/Confetti";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 
+// Define the ContactUs component
 export const ContactUs = () => {
+    // Clipboard hook to copy the email address
     const { hasCopied, onCopy } = useClipboard("example@example.com");
+    // Hook to translate the UI
     const { t } = useTranslation();
+    // State variables for name, email, and message input fields
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    // State variables to track whether an input field has been focused
     const [isNameFocused, setNameFocused] = useState(false);
     const [isEmailFocused, setEmailFocused] = useState(false);
     const [isMessageFocused, setMessageFocused] = useState(false);
+    // State variable to determine if the form is valid
     const [isFormValid, setIsFormValid] = useState(false);
 
+    // Handlers for change events on input fields
     const handleNameChange = (e) => setName(e.target.value);
     const handleMailChange = (e) => setEmail(e.target.value);
     const handleMessageChange = (e) => setMessage(e.target.value);
 
+    // Error checking for each field
     const isNameError = name === "";
     const isEmailError =
         email === "" ||
         !email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/);
     const isMessageError = message === "" || message.length <= 5;
 
+    // Effect to determine if the form is valid
     useEffect(() => {
         if (!isNameError && !isEmailError && !isMessageError) {
             setIsFormValid(true);
@@ -55,6 +65,7 @@ export const ContactUs = () => {
         }
     }, [isNameError, isEmailError, isMessageError]);
 
+    // This is the main container for the component, which includes settings for alignment, coloring and background image.
     return (
         <Flex
             bg={useColorModeValue("gray.100", "gray.900")}
@@ -76,31 +87,33 @@ export const ContactUs = () => {
             >
                 <Box>
                     <VStack spacing={{ base: 4, md: 8, lg: 20 }}>
+                        {/* This is the main heading */}
                         <Heading
                             fontSize={{
                                 base: "4xl",
                                 md: "5xl",
                             }}
                             color="green.500"
-                            _hover={{bg: "blue.500",
-                            color: useColorModeValue(
-                                "white",
-                                "gray.700"
-                            )
-                         }}
+                            _hover={{
+                                bg: "blue.500",
+                                color: useColorModeValue("white", "gray.700"),
+                            }}
                         >
                             {t("Get in Touch!")}
                         </Heading>
 
+                        {/* This is the main Stack that contains two children: social media buttons stack and a form */}
                         <Stack
                             spacing={{ base: 4, md: 8, lg: 20 }}
                             direction={{ base: "column", md: "row" }}
                         >
+                            {/* This is the Stack for social media buttons */}
                             <Stack
                                 align="center"
                                 justify="space-around"
                                 direction={{ base: "row", md: "column" }}
                             >
+                                {/* Email button with tooltip */}
                                 <Tooltip
                                     label={
                                         hasCopied
@@ -128,6 +141,8 @@ export const ContactUs = () => {
                                     />
                                 </Tooltip>
 
+                                {/* The rest of the buttons for other social media */}
+                                {/* GitHub */}
                                 <Link href="#">
                                     <IconButton
                                         aria-label="github"
@@ -145,7 +160,7 @@ export const ContactUs = () => {
                                         isRound
                                     />
                                 </Link>
-
+                                {/* Twitter */}
                                 <Link href="#">
                                     <IconButton
                                         aria-label="twitter"
@@ -162,7 +177,7 @@ export const ContactUs = () => {
                                         isRound
                                     />
                                 </Link>
-
+                                {/* LinkedIn */}
                                 <Link href="#">
                                     <IconButton
                                         aria-label="linkedin"
@@ -181,6 +196,7 @@ export const ContactUs = () => {
                                 </Link>
                             </Stack>
 
+                            {/* This is the form for contact */}
                             <Box
                                 bg={useColorModeValue("white", "gray.700")}
                                 borderRadius="lg"
@@ -192,6 +208,7 @@ export const ContactUs = () => {
                                 shadow="base"
                             >
                                 <VStack spacing={5}>
+                                    {/* Name input field */}
                                     <FormControl
                                         isRequired
                                         isInvalid={isNameError && isNameFocused}
@@ -223,6 +240,8 @@ export const ContactUs = () => {
                                         )}
                                     </FormControl>
 
+                                    {/* The rest of the form fields */}
+                                    {/* Email */}
                                     <FormControl
                                         isRequired
                                         isInvalid={
@@ -257,7 +276,7 @@ export const ContactUs = () => {
                                             </FormErrorMessage>
                                         )}
                                     </FormControl>
-
+                                    {/* Message */}
                                     <FormControl
                                         isRequired
                                         isInvalid={
@@ -289,7 +308,7 @@ export const ContactUs = () => {
                                             </FormErrorMessage>
                                         )}
                                     </FormControl>
-
+                                    {/* Send Message button */}
                                     <Button
                                         colorScheme="blue"
                                         bg="blue.400"

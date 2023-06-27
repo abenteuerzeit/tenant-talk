@@ -16,20 +16,26 @@ import { useTranslatedItems } from "./MenuTexts";
 import { SearchBar } from "./SearchBar";
 
 
+// The component renders the desktop version of the navigation menu
 export const DesktopNav = () => {
+    // Use the translation hook and get the translated navigation items
     const { NAV_ITEMS } = useTranslatedItems();
     const { t } = useTranslation();
+
+    // Define color variables for different color modes
     const color = useColorModeValue("gray.600", "gray.200");
     const hoverColor = useColorModeValue("gray.800", "white");
     const popoverContentColor = useColorModeValue("white", "gray.800");
-  
 
+    // Render the navigation items in a row
     return (
         <Stack direction={"row"} spacing={4}>
             {NAV_ITEMS.map((navItem) => (
                 <Box key={navItem.label}>
+                    {/* // Each navigation item is wrapped in a Popover for hover-triggered dropdowns */}
                     <Popover trigger={"hover"} placement={"bottom-start"}>
                         <PopoverTrigger>
+                            {/* // Link element for the navigation item */}
                             <Link
                                 p={2}
                                 href={navItem.href ?? "#"}
@@ -47,6 +53,7 @@ export const DesktopNav = () => {
                             </Link>
                         </PopoverTrigger>
 
+                        {/* // If the navigation item has children, render them in a dropdown */}
                         {navItem.children && (
                             <PopoverContent
                                 border={0}
@@ -58,6 +65,7 @@ export const DesktopNav = () => {
                             >
                                 <Stack>
                                     {navItem.children.map((child) => (
+                                        // // Render each child navigation item using the DesktopSubNav component
                                         <DesktopSubNav
                                             key={child.label}
                                             {...child}
@@ -69,6 +77,8 @@ export const DesktopNav = () => {
                     </Popover>
                 </Box>
             ))}
+
+            {/* // A SearchBar component aligned to the end */}
             <Flex
                 flex={{ base: 2 }}
                 justify={{ base: "center", md: "end" }}
@@ -80,12 +90,11 @@ export const DesktopNav = () => {
     );
 };
 
-// The navigation items for the desktop version of the navigation
-
 // The sub-navigation items for the desktop version of the navigation
 const DesktopSubNav = ({ label, href, subLabel, languageCode }) => {
     const { i18n, t } = useTranslation();
 
+    // The function to change the language of the app
     const changeLanguage = (language) => {
         if (language) {
             i18n.changeLanguage(language);
@@ -93,7 +102,8 @@ const DesktopSubNav = ({ label, href, subLabel, languageCode }) => {
         }
     };
 
-    return (
+    // Render the sub-navigation items and language change button
+        return (
         <Link
             href={href}
             onClick={() => changeLanguage(languageCode)}
@@ -141,4 +151,3 @@ const DesktopSubNav = ({ label, href, subLabel, languageCode }) => {
         </Link>
     );
 };
-
