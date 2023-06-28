@@ -60,3 +60,4 @@ dist/
 # mongodb://localhost:27017
 # localhost:27017
 tenant_frontend/src/db.js
+tenant_frontend/src/components/SocialAuth.txt

@@ -11,7 +11,7 @@ export const SearchBar = () => {
             <InputRightElement pointerEvents="none">
                 <SearchIcon color="gray.300" />
             </InputRightElement>
-            <Input type="text" placeholder="Search..." w={"full"} />
+            <Input type="text" placeholder="Search..." w={"full"} name="searchInputField"/>
         </InputGroup>
     );
 };

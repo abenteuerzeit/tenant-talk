@@ -51,7 +51,7 @@ export const LogInCard = () => {
                         {/* // Form control for email input */}
                         <FormControl id="email" isRequired>
                             <FormLabel>{t("Email address")}</FormLabel>
-                            <Input type="email" value={input} onChange={handleInputChange} />
+                            <Input type="email" value={input} onChange={handleInputChange} autoComplete='off'/>
                             {/* // Conditional rendering for error message */}
                             {!isError ? (
                                 <FormHelperText>{t("Enter your email.")}</FormHelperText>
@@ -68,7 +68,7 @@ export const LogInCard = () => {
                         <Stack spacing={10}>
                             {/* // Stack for "Remember me" checkbox and "Forgot password" link */}
                             <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
-                                <Checkbox>{t("Remember me")}</Checkbox>
+                                <Checkbox name='rememberMeCheckbox'>{t("Remember me")}</Checkbox>
                                 <Link color={'blue.400'}>{t("Forgot password?")}</Link>
                             </Stack>
                             {/* // Button for submitting the form */}

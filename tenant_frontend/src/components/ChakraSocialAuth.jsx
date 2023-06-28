@@ -4,9 +4,10 @@ import { LoginSocialGoogle } from "reactjs-social-login";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { useTranslation } from "react-i18next";
 import { useUser } from "./auth_components/userProvider";
+import Cookies from "js-cookie";
 
 // Redirect URL after successful login
-const REDIRECT_URI = "http://localhost:3000/login"
+const REDIRECT_URI = "http://localhost:3000/login";
 
 export const ChakraSocialAuth = ({ onLogin, onLogout }) => {
     const { t } = useTranslation();
@@ -16,22 +17,23 @@ export const ChakraSocialAuth = ({ onLogin, onLogout }) => {
     const toast = useToast();
 
     // Callback function to handle successful login response
-    // Updates the global user state and stores user data in local storage
+    // Updates the global user state and stores user data in an HTTP-only cookie
     const onResolve = useCallback(
         ({ provider, data }) => {
             const userData = {
                 provider,
                 profile: data,
             };
+
             // Updates the global user state
             setUser(userData);
 
-            // Stores user data in local storage
-            localStorage.setItem('user', JSON.stringify(userData));
+            // Stores user data in an HTTP-only cookie
+            Cookies.set("user", userData, { Secure: true, SameSite: "Strict" });
         },
         [setUser]
     );
-    
+
     // Callback function to notify the start of the login process
     const onLoginStart = useCallback(() => {
         toast({
@@ -41,8 +43,7 @@ export const ChakraSocialAuth = ({ onLogin, onLogout }) => {
             isClosable: true,
             position: "top",
         });
-    }, [toast,t]);
-
+    }, [toast, t]);
 
     return (
         // Google login button component

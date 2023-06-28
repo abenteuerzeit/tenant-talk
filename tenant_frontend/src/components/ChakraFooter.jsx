@@ -146,6 +146,7 @@ export const ChakraFooter = () => {
                                 _focus={{
                                     bg: "whiteAlpha.300",
                                 }}
+                                id="contactEmail"
                             />
                             <IconButton
                                 bg={useColorModeValue("green.400", "green.800")}
