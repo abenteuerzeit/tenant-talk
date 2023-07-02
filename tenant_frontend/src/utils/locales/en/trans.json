@@ -78,5 +78,10 @@
   "Starting Login...": "Starting Login...",
   "Logout Successful": "Logout Successful",
   "Hello": "Hello",
-  "Hello, Anonym!": "Hello, Anonym!"
+  "Hello, Anonym!": "Hello, Anonym!",
+  "The page you're looking for does not seem to exist":"The page you're looking for does not seem to exist",
+  "Page Not Found":"Page Not Found",
+  "Go to Home page":"Go to Home page"
+
+
 }
