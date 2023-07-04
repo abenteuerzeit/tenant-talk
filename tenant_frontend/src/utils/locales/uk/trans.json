@@ -78,5 +78,8 @@
     "Starting Login...": "Початок входу...",
     "Logout Successful": "Вихід успішний",
     "Hello": "Привіт",
-    "Hello, Anonym!": "Привіт, Аноніме!"
-}
+    "Hello, Anonym!": "Привіт, Аноніме!",
+    "The page you're looking for does not seem to exist": "Сторінка, яку ви шукаєте, здається, не існує",
+    "Page Not Found": "Сторінку не знайдено",
+    "Go to Home page": "Перейдіть на домашню сторінку"
+  }

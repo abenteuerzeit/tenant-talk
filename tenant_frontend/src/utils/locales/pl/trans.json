@@ -78,5 +78,9 @@
   "Starting Login...": "Rozpoczęcie logowania...",
   "Logout Successful": "Wylogowanie zakończone pomyślnie",
   "Hello": "Cześć",
-  "Hello, Anonym!": "Witaj, Anonimie!"
+  "Hello, Anonym!": "Witaj, Anonimie!",
+  "The page you're looking for does not seem to exist": "Wygląda na to, że strona, której szukasz, nie istnieje",
+  "Page Not Found": "Strona nie znaleziona",
+  "Go to Home page": "Wróć do strony głównej"
 }
+ 
