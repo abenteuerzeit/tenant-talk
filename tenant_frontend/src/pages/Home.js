@@ -1,8 +1,9 @@
-
+import { useTranslation } from "react-i18next";
 export const Home  = () => {
+    const {t} =useTranslation()
     return (
         <>
-            <h1 >Home</h1>
+            <h1 >{t("Home")}</h1>
         
         </>
     )
