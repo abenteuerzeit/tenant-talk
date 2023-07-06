@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Box, Heading, Text, Button } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export const ErrorPage = () => {
     const { t } = useTranslation();
@@ -19,14 +20,16 @@ export const ErrorPage = () => {
           <Text color={'gray.500'} mb={6}>
         {t("The page you're looking for does not seem to exist")}
           </Text>
-    
-          <Button
-            colorScheme="teal"
-            bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
-            color="white"
-            variant="solid">
-            {t("Go to Home page")}
-          </Button>
+
+          <Link to="/">
+            <Button
+              colorScheme="teal"
+              bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
+              color="white"
+              variant="solid">
+              {t("Go to Home page")}
+            </Button>
+          </Link>
         </Box>
       );
 };

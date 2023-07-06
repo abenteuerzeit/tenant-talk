@@ -318,7 +318,6 @@ export const ContactUs = () => {
                                             bg: "gray.400",
                                             cursor: "not-allowed",
                                         }}
-                                        isFullWidth
                                         isDisabled={!isFormValid}
                                     >
                                         {t("Send Message")}
