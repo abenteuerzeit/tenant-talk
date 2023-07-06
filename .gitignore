@@ -61,3 +61,6 @@ dist/
 # localhost:27017
 tenant_frontend/src/db.js
 tenant_frontend/src/components/SocialAuth.txt
+
+# npm install create this file on your local machine
+package-lock.json
