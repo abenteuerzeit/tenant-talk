@@ -1,0 +1,30 @@
+version: 2
+updates:
+  # Maintain dependencies for the frontend
+  - package-ecosystem: "npm"
+    directory: "/tenant_frontend"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "abenteuerzeit"
+    labels:
+      - "dependencies"
+      - "automated pr"
+    allow:
+      - dependency-type: "all"
+
+  # Maintain dependencies for the server
+  - package-ecosystem: "npm"
+    directory: "/server"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "abenteuerzeit"
+    labels:
+      - "dependencies"
+      - "automated pr"
+    allow:
+      - dependency-type: "all"
+
