@@ -6,6 +6,7 @@ import {
     Home,
     ContactUs,
     LogInCard,
+    UserProfile,
 } from "../pages";
 
 export const AllRoutes = () => {
@@ -17,6 +18,7 @@ export const AllRoutes = () => {
                 <Route path="/discussions" element={<Discussions />}></Route>
                 <Route path="/contactus" element={<ContactUs />}></Route>
                 <Route path="/login" element={<LogInCard />}></Route>
+                <Route path="/profile" element={<UserProfile />}></Route>
                 <Route path="*" element={<ErrorPage />}></Route>
 
             </Routes>

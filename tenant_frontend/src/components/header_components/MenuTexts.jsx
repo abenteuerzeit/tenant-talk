@@ -17,7 +17,7 @@ export const useTranslatedItems = (isLoggedIn, logout) => {
               },
               {
                   name: t("Account Settings"),
-                  link: "/",
+                  link: "/profile",
                   special: false,
               },
               {

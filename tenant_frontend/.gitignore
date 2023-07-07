@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# npm install create this file on your local machine
+package-lock.json
+
+NODE_ENV=development
