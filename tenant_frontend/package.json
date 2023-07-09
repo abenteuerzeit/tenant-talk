@@ -6,6 +6,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.1",
+    "@choc-ui/chakra-autocomplete": "^5.1.5",
     "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -20,7 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.3.1",
-    "react-icons": "^4.9.0",
+    "react-icons": "^4.10.1",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-social-login-buttons": "^3.9.1",
