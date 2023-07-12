@@ -1,0 +1,52 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ main, development ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ development ]
+  schedule:
+    - cron: '0 23 * * 6'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript']
+        # CodeQL supports ['cpp', 'csharp', 'go', 'java', 'javascript', 'python']
+        # Learn more about CodeQL language support at the following link:
+        # https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#changing-the-languages-that-are-analyzed
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+        # If you wish to specify custom queries, you can do so here or in a config file
+        # By default, queries listed here will override any specified in a config file. 
+        # queries: ./path/to/local/query,github.com/org/repo/queries@main
+
+    - name: Install dependencies and build (server)
+      run: |
+        cd server
+        npm ci
+        npm run build
+      # Replace 'npm ci' and 'npm run build' with the commands you use to build your server application
+
+    - name: Install dependencies and build (client)
+      run: |
+        cd tenant_frontend
+        npm ci
+        npm run build
+      # Replace 'npm ci' and 'npm run build' with the commands you use to build your client application
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
