@@ -2,7 +2,7 @@ name: Generate and commit package-lock.json
 
 on:
   push:
-    branches: [ main, development ]
+    branches: [ gh-actions ]
 
 jobs:
   update-lockfile:
