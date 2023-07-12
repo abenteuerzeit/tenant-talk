@@ -33,3 +33,4 @@ jobs:
         commit_message: 'chore: update package-lock.json'
         file_pattern: ${{ matrix.directory }}/package-lock.json
         branch: ${{ github.head_ref }}
+        github_token: ${{ secrets.GH_PAT }}
