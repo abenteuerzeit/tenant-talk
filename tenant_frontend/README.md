@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+[![Deploy to GitHub Pages](https://github.com/abenteuerzeit/tenant-talk/actions/workflows/deploy-to-gh-pages.yml/badge.svg)](https://github.com/abenteuerzeit/tenant-talk/actions/workflows/deploy-to-gh-pages.yml)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
