@@ -4,6 +4,8 @@ TenantTalk is a community-driven platform for tenants to rate, review, and share
 
 [![CodeQL](https://github.com/abenteuerzeit/tenant-talk/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/abenteuerzeit/tenant-talk/actions/workflows/github-code-scanning/codeql)
 
+[![Generate and commit package-lock.json](https://github.com/abenteuerzeit/tenant-talk/actions/workflows/update-package-lock.yml/badge.svg)](https://github.com/abenteuerzeit/tenant-talk/actions/workflows/update-package-lock.yml)
+
 ## Table of Contents
 
 - [Project Vision and Strategy](#project-vision-and-strategy)
