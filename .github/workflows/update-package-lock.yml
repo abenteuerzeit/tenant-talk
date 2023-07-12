@@ -1,11 +1,18 @@
 name: Generate and commit package-lock.json
 
 on:
-  push:
-    branches: [gh-actions]
+  pull_request:
+    types: [closed]
+    branches: [development]
+    paths:
+      - 'server/package-lock.json'
+      - 'tenant_frontend/package-lock.json'
+      - 'server/package.json'
+      - 'tenant_frontend/package.json'
 
 jobs:
   update-lockfile:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -22,25 +29,17 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ${{ matrix.directory }}/package-lock.json
 
-      - name: Check if branch exists
-        id: branch_check
+      - name: Create branch
+        id: create_branch
         run: |
-          git fetch origin
-          if git rev-parse --verify ga-update-lockfile >/dev/null 2>&1; then
-            echo "::set-output name=branch_exists::true"
-          else
-            echo "::set-output name=branch_exists::false"
-          fi
+          BRANCH_NAME=automated-update-${{ github.sha }}
+          git checkout -b $BRANCH_NAME
+          echo "::set-output name=branch_name::$BRANCH_NAME"
 
-      - name: Create branch if it doesn't exist
-        if: steps.branch_check.outputs.branch_exists == 'false'
-        run: |
-          git checkout -b ga-update-lockfile
-          git push origin ga-update-lockfile
-
-      - name: Generate package-lock.json
+      - name: Update npm packages and Generate package-lock.json
         run: |
           cd ${{ matrix.directory }}
+          npm update
           npm install
 
       - name: Commit changes
@@ -48,15 +47,26 @@ jobs:
         with:
           commit_message: 'chore: update package-lock.json'
           file_pattern: ${{ matrix.directory }}/package-lock.json
-          branch: ga-update-lockfile
+          branch: ${{ steps.create_branch.outputs.branch_name }}
           github_token: ${{ secrets.GH_PAT }}
 
+      - name: Push changes
+        run: git push origin ${{ steps.create_branch.outputs.branch_name }}
+
       - name: Create pull request
+        id: cpr
         uses: peter-evans/create-pull-request@v3
-        if: steps.branch_check.outputs.branch_exists == 'false'
         with:
           token: ${{ secrets.GH_PAT }}
-          branch: ga-update-lockfile
-          title: 'Update package-lock.json'
+          branch: ${{ steps.create_branch.outputs.branch_name }}
+          title: 'Automated update of package-lock.json'
           body: 'This pull request updates the package-lock.json file.'
           base: 'development'
+
+      - name: Label the pull request
+        if: steps.cpr.conclusion == 'success'
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          gh pr edit "$PR_NUMBER" --add-label "automated pr"
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
