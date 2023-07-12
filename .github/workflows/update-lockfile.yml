@@ -7,7 +7,6 @@ on:
 jobs:
   update-lockfile:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         directory: ['server', 'tenant_frontend']
@@ -21,6 +20,7 @@ jobs:
       with:
         node-version: '14'
         cache: 'npm'
+        cache-dependency-path: ${{ matrix.directory }}/package-lock.json
 
     - name: Generate package-lock.json
       run: |
