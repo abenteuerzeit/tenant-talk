@@ -5,12 +5,14 @@ on:
     types: [closed]
     branches: [development]
     paths:
-      - '**/package-lock.json'
-      - '**/package.json'
+      - 'server/package-lock.json'
+      - 'tenant_frontend/package-lock.json'
+      - 'server/package.json'
+      - 'tenant_frontend/package.json'
 
 jobs:
   update-lockfile:
-    if: github.event.pull_request.merged == true && github.event.pull_request.user.type == 'User'
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       matrix:
