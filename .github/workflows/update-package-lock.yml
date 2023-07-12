@@ -2,7 +2,7 @@ name: Generate and commit package-lock.json
 
 on:
   push:
-    branches: [ development ]
+    branches: [gh-actions]
 
 jobs:
   update-lockfile:
@@ -12,25 +12,51 @@ jobs:
         directory: ['server', 'tenant_frontend']
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
-        cache: 'npm'
-        cache-dependency-path: ${{ matrix.directory }}/package-lock.json
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.directory }}/package-lock.json
 
-    - name: Generate package-lock.json
-      run: |
-        cd ${{ matrix.directory }}
-        npm install
+      - name: Check if branch exists
+        id: branch_check
+        run: |
+          git fetch origin
+          if git rev-parse --verify ga-update-lockfile >/dev/null 2>&1; then
+            echo "::set-output name=branch_exists::true"
+          else
+            echo "::set-output name=branch_exists::false"
+          fi
 
-    - name: Commit changes
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: 'chore: update package-lock.json'
-        file_pattern: ${{ matrix.directory }}/package-lock.json
-        branch: ga-update-lockfile
-        github_token: ${{ secrets.GH_PAT }}
+      - name: Create branch if it doesn't exist
+        if: steps.branch_check.outputs.branch_exists == 'false'
+        run: |
+          git checkout -b ga-update-lockfile
+          git push origin ga-update-lockfile
+
+      - name: Generate package-lock.json
+        run: |
+          cd ${{ matrix.directory }}
+          npm install
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: update package-lock.json'
+          file_pattern: ${{ matrix.directory }}/package-lock.json
+          branch: ga-update-lockfile
+          github_token: ${{ secrets.GH_PAT }}
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        if: steps.branch_check.outputs.branch_exists == 'false'
+        with:
+          token: ${{ secrets.GH_PAT }}
+          branch: ga-update-lockfile
+          title: 'Update package-lock.json'
+          body: 'This pull request updates the package-lock.json file.'
+          base: 'development'
