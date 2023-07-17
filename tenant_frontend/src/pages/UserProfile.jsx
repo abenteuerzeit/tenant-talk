@@ -7,11 +7,15 @@ import {
     Heading,
     Text,
     Stack,
-    Badge,
     AvatarBadge,
+    Tabs,
+    Tab,
+    TabList,
+    TabIndicator,
+    TabPanels,
+    TabPanel,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
 
 export const UserProfile = () => {
     const userData = useUser();
@@ -32,8 +36,9 @@ export const UserProfile = () => {
                         h={"100%"}
                         borderRadius={"2px"}
                         textAlign={"center"}
+                        mt={"10px"}
                     >
-                        <Heading as={"h1"}>
+                        <Heading as={"h2"}>
                             {userData.user.profile.name}
                         </Heading>
                         <Text>
@@ -46,6 +51,7 @@ export const UserProfile = () => {
                             m={4}
                             size="2xl"
                             src={userData.user.profile.picture}
+                            shadow={"0px 2px 5px black"}
                         >
                             <AvatarBadge boxSize={"70px"} border={"none"}>
                                 <Avatar
@@ -58,47 +64,45 @@ export const UserProfile = () => {
                     </Box>
 
                     <Box
-                        p={5}
                         w={["100%", "100%", "70%"]}
                         bg="white"
                         borderRadius={"2px"}
                     >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Consequatur, reiciendis deserunt? Deserunt quia deleniti
-                        placeat nulla quasi doloribus, optio unde illo dolores
-                        neque voluptates, laborum, pariatur voluptas hic totam
-                        assumenda.
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Consequatur, reiciendis deserunt? Deserunt quia deleniti
-                        placeat nulla quasi doloribus, optio unde illo dolores
-                        neque voluptates, laborum, pariatur voluptas hic totam
-                        assumenda.
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Consequatur, reiciendis deserunt? Deserunt quia deleniti
-                        placeat nulla quasi doloribus, optio unde illo dolores
-                        neque voluptates, laborum, pariatur voluptas hic totam
-                        assumenda.
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Consequatur, reiciendis deserunt? Deserunt quia deleniti
-                        placeat nulla quasi doloribus, optio unde illo dolores
-                        neque voluptates, laborum, pariatur voluptas hic totam
-                        assumenda.
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Consequatur, reiciendis deserunt? Deserunt quia deleniti
-                        placeat nulla quasi doloribus, optio unde illo dolores
-                        neque voluptates, laborum, pariatur voluptas hic totam
-                        assumenda.
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Consequatur, reiciendis deserunt? Deserunt quia deleniti
-                        placeat nulla quasi doloribus, optio unde illo dolores
-                        neque voluptates, laborum, pariatur voluptas hic totam
-                        assumenda.
-                        <br />
+                        <Box
+                            bg={"blackAlpha.100"}
+                            w={"100%"}
+                            h={[null, "119.5px", "122.5px"]}
+                            
+                        >
+                            <Heading as={"h1"} p={5} ml={5}>
+                                Edit Profile
+                            </Heading>
+                            <Tabs
+                                position={"relative"}
+                                variant={"unstyled"}
+                                ml={5}
+                            >
+                                <TabList>
+                                    <Tab>User Info</Tab>
+                                    <Tab>Billing Information</Tab>
+                                </TabList>
+                                <TabIndicator
+                                    mt="-1.5px"
+                                    height="2px"
+                                    bg="blue.500"
+                                    borderRadius="1px"
+                                />
+                                <TabPanels>
+                                    <TabPanel>
+                                        <p>one!</p> {/* Component with ability to change full name, username, password, email address etc. */}
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <p>two!</p>
+                                    </TabPanel>
+                                    
+                                </TabPanels>
+                            </Tabs>
+                        </Box>
                     </Box>
                 </Stack>
             </Center>
