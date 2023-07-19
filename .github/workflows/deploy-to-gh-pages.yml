@@ -31,6 +31,12 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
+      
+      - name: Update package-lock.json
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
+      
       - name: Install Dependencies
         run: npm ci
 
@@ -44,5 +50,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
-          folder: tenant_frontend/build  # updated this line
+          folder: tenant_frontend/build
           clean: true
