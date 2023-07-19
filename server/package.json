@@ -47,7 +47,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
     "prettier": "^2.8.8",
-    "sinon": "^15.0.4",
+    "sinon": "^15.2.0",
     "supertest": "^6.3.3"
   }
 }
