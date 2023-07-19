@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import {
     Cities,
     Discussions,
@@ -9,17 +9,14 @@ import {
 } from "../pages";
 
 export const AllRoutes = () => {
-    return (
-        <main>
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/cities" element={<Cities />}></Route>
-                <Route path="/discussions" element={<Discussions />}></Route>
-                <Route path="/contactus" element={<ContactUs />}></Route>
-                <Route path="/login" element={<LogInCard />}></Route>
-                <Route path="*" element={<ErrorPage />}></Route>
+    const element = useRoutes([
+        { path: "/", element: <Home /> },
+        { path: "cities", element: <Cities /> },
+        { path: "discussions", element: <Discussions /> },
+        { path: "contactus", element: <ContactUs /> },
+        { path: "login", element: <LogInCard /> },
+        { path: "*", element: <ErrorPage /> },
+    ]);
 
-            </Routes>
-        </main>
-    );
+    return <main>{element}</main>;
 };
