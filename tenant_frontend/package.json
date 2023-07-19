@@ -2,7 +2,7 @@
   "name": "tenant_frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://abenteuerzeit.github.io/tenant-talk/tenant-front",
+  "homepage": "https://abenteuerzeit.github.io/tenant-talk",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.1",
