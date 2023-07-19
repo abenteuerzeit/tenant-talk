@@ -11,10 +11,10 @@ import {
 export const AllRoutes = () => {
     const element = useRoutes([
         { path: "/", element: <Home /> },
-        { path: "cities", element: <Cities /> },
-        { path: "discussions", element: <Discussions /> },
-        { path: "contactus", element: <ContactUs /> },
-        { path: "login", element: <LogInCard /> },
+        { path: "/cities", element: <Cities /> },
+        { path: "/discussions", element: <Discussions /> },
+        { path: "/contactus", element: <ContactUs /> },
+        { path: "/login", element: <LogInCard /> },
         { path: "*", element: <ErrorPage /> },
     ]);
 

@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <I18Provider i18n={i18n}>
-            <Router history={history}>
+            <Router basename="/tenant-talk" history={history}>
                 <App />
             </Router>
         </I18Provider>
