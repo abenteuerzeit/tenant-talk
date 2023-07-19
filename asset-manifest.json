@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/tenant-talk/tenant-front/static/css/main.d68f8336.css",
-    "main.js": "/tenant-talk/tenant-front/static/js/main.78264261.js",
-    "static/js/496.84c89be3.chunk.js": "/tenant-talk/tenant-front/static/js/496.84c89be3.chunk.js",
-    "index.html": "/tenant-talk/tenant-front/index.html",
-    "static/media/getFetch.cjs": "/tenant-talk/tenant-front/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.d68f8336.css.map": "/tenant-talk/tenant-front/static/css/main.d68f8336.css.map",
-    "main.78264261.js.map": "/tenant-talk/tenant-front/static/js/main.78264261.js.map",
-    "496.84c89be3.chunk.js.map": "/tenant-talk/tenant-front/static/js/496.84c89be3.chunk.js.map"
+    "main.css": "/tenant-talk/static/css/main.d68f8336.css",
+    "main.js": "/tenant-talk/static/js/main.2be28650.js",
+    "static/js/496.84c89be3.chunk.js": "/tenant-talk/static/js/496.84c89be3.chunk.js",
+    "index.html": "/tenant-talk/index.html",
+    "static/media/getFetch.cjs": "/tenant-talk/static/media/getFetch.40f37ddea2378391108f.cjs",
+    "main.d68f8336.css.map": "/tenant-talk/static/css/main.d68f8336.css.map",
+    "main.2be28650.js.map": "/tenant-talk/static/js/main.2be28650.js.map",
+    "496.84c89be3.chunk.js.map": "/tenant-talk/static/js/496.84c89be3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d68f8336.css",
-    "static/js/main.78264261.js"
+    "static/js/main.2be28650.js"
   ]
 }
