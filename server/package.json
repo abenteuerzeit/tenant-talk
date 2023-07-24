@@ -46,7 +46,7 @@
     "mongodb-memory-server": "^8.13.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "sinon": "^15.2.0",
     "supertest": "^6.3.3"
   }
