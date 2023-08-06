@@ -1,0 +1,72 @@
+name: Generate and commit package-lock.json
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [development]
+    paths:
+      - 'server/package-lock.json'
+      - 'tenant_frontend/package-lock.json'
+      - 'server/package.json'
+      - 'tenant_frontend/package.json'
+
+jobs:
+  update-lockfile:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        directory: ['server', 'tenant_frontend']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.directory }}/package-lock.json
+
+      - name: Create branch
+        id: create_branch
+        run: |
+          BRANCH_NAME=automated-update-${{ github.sha }}
+          git checkout -b $BRANCH_NAME
+          echo "::set-output name=branch_name::$BRANCH_NAME"
+
+      - name: Update npm packages and Generate package-lock.json
+        run: |
+          cd ${{ matrix.directory }}
+          npm update
+          npm install
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: update package-lock.json'
+          file_pattern: ${{ matrix.directory }}/package-lock.json
+          branch: ${{ steps.create_branch.outputs.branch_name }}
+          github_token: ${{ secrets.GH_PAT }}
+
+      - name: Push changes
+        run: git push origin ${{ steps.create_branch.outputs.branch_name }}
+
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
+          branch: ${{ steps.create_branch.outputs.branch_name }}
+          title: 'Automated update of package-lock.json'
+          body: 'This pull request updates the package-lock.json file.'
+          base: 'development'
+
+      - name: Label the pull request
+        if: steps.cpr.conclusion == 'success'
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          gh pr edit "$PR_NUMBER" --add-label "automated pr"
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
