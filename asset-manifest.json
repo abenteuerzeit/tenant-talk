@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/tenant-talk/static/css/main.9812e6b9.css",
-    "main.js": "/tenant-talk/static/js/main.af1e93d8.js",
-    "static/js/496.46aca978.chunk.js": "/tenant-talk/static/js/496.46aca978.chunk.js",
+    "main.css": "/tenant-talk/static/css/main.a803749a.css",
+    "main.js": "/tenant-talk/static/js/main.1965a655.js",
+    "static/js/496.7753e5fe.chunk.js": "/tenant-talk/static/js/496.7753e5fe.chunk.js",
     "index.html": "/tenant-talk/index.html",
     "static/media/getFetch.cjs": "/tenant-talk/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.9812e6b9.css.map": "/tenant-talk/static/css/main.9812e6b9.css.map",
-    "main.af1e93d8.js.map": "/tenant-talk/static/js/main.af1e93d8.js.map",
-    "496.46aca978.chunk.js.map": "/tenant-talk/static/js/496.46aca978.chunk.js.map"
+    "main.a803749a.css.map": "/tenant-talk/static/css/main.a803749a.css.map",
+    "main.1965a655.js.map": "/tenant-talk/static/js/main.1965a655.js.map",
+    "496.7753e5fe.chunk.js.map": "/tenant-talk/static/js/496.7753e5fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9812e6b9.css",
-    "static/js/main.af1e93d8.js"
+    "static/css/main.a803749a.css",
+    "static/js/main.1965a655.js"
   ]
 }
